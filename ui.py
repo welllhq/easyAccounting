@@ -7,6 +7,10 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from database import Database
 from models import Ledger, AssetRecord
+import matplotlib.font_manager as fm
+# 设置matplotlib中文字体支持
+plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
+plt.rcParams['axes.unicode_minus'] = False
 
 class AccountingApp:
     def __init__(self, root):
@@ -411,6 +415,22 @@ class AccountingApp:
         
         # 创建子图
         ax = self.line_chart_fig.add_subplot(111)
+
+        # 设置中文字体
+        font_path = None
+        try:
+            # 尝试获取系统中文字体
+            font_names = ['SimHei', 'Microsoft YaHei', 'STHeiti', 'Songti SC']
+            for font_name in font_names:
+                try:
+                    font_path = fm.findfont(fm.FontProperties(family=font_name))
+                    if font_path and font_path != fm.findfont(fm.FontProperties()):
+                        ax.set_prop_cycle('color', plt.cm.tab10.colors)
+                        break
+                except:
+                    continue
+        except:
+            pass
         
         # 为每个账本获取历史数据并绘制折线
         colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7", "#DDA0DD", "#98D8C8", 
