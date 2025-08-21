@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /build/资产盘点
 /dist
 /资产盘点.spec
+/env
+/accounting.db

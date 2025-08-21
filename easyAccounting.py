@@ -1,11 +1,13 @@
 # easyAccounting.py
-import tkinter as tk
-from ui import AccountingApp
+from ui import MainWindow
+from PySide6.QtWidgets import QApplication
+import sys
 
 def main():
-    root = tk.Tk()
-    app = AccountingApp(root)
-    root.mainloop()
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
 
 if __name__ == "__main__":
     main()
